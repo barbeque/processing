@@ -1,0 +1,25 @@
+<script src="vendor/processing-1.4.1.min.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+float radSpeed = 0.2;
+float rad = 0;
+
+void setup() {
+  size(100, 100);
+  frameRate(30);
+}
+
+void draw() {
+  background(102);
+  noFill();
+  rad += radSpeed;
+  
+  for(float guts = 0; guts < 50; guts += 6) {
+    float channel = 256 * (guts / 50);
+    color c = color(channel);
+    
+    stroke(c);
+    arc(50, 50, guts + 50, guts + 50, rad + guts, rad + HALF_PI + guts);
+  }
+}
+</script>
+<canvas id="mycanvas"></canvas>
