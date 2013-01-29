@@ -1,0 +1,40 @@
+<script src="vendor/processing-1.4.1.min.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+float speed = 0.2;
+float t = 0;
+
+ArrayList lines;
+
+public class Line {
+  public float radius;
+  public float length;
+  public float startingAngle;
+}
+
+void setup() {
+  size(100, 100);
+  frameRate(30);
+
+  lines = new ArrayList();
+  for(int i = 0; i < int(random(5, 20)); ++i) {
+    Line l = new Line();
+    l.radius = random(50, 100);
+    l.length = random(0.10 * PI, 0.75 * 2 * PI);
+    l.startingAngle = random(0, 2 * PI);
+    lines.add(l);
+  }
+}
+
+void draw() {
+  background(102);
+  noFill();
+  t += speed;
+
+  for(int i = 0; i < lines.size(); ++i) {
+    Line l = (Line)lines.get(i);
+    float offset = t * (l.radius / 100.0);
+    arc(50, 50, l.radius, l.radius, l.startingAngle + offset, l.startingAngle + l.length + offset);
+  }
+}
+</script>
+<canvas id="mycanvas"></canvas>
