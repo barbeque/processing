@@ -33,6 +33,8 @@ void draw() {
   for(int i = 0; i < lines.size(); ++i) {
     Line l = (Line)lines.get(i);
     float offset = t * (l.radius / 100.0);
+    color c = color(255);
+    stroke(c);
     arc(50, 50, l.radius, l.radius, l.startingAngle + offset, l.startingAngle + l.length + offset);
   }
 }
